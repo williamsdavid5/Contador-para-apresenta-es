@@ -25,7 +25,7 @@ function App() {
 
   const contadores = [
     { titulo: "Introdução", tempo: 3 },
-    { titulo: "Objetivos", tempo: 0.1 },
+    { titulo: "Objetivos", tempo: 2 },
     { titulo: "Fundamentação", tempo: 3 },
     { titulo: "Hardware", tempo: 5 },
     { titulo: "Software", tempo: 3 },
@@ -55,7 +55,7 @@ function App() {
 
   return (
     <>
-      <div className='divTitulo'>
+      {/* <div className='divTitulo'>
         <div className='contadorGeral'>
 
         </div>
@@ -64,7 +64,7 @@ function App() {
           <button onClick={() => setIndiceAtual(-1)}>Pausar</button>
         }
 
-      </div>
+      </div> */}
       {/* <p>Tempo total: {tempoTotal}</p> */}
       {contadores.map((c, index) => (
         <Contador
