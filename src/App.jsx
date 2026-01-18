@@ -25,7 +25,7 @@ function App() {
 
   const contadores = [
     { titulo: "Introdução", tempo: 3 },
-    { titulo: "Objetivos", tempo: 2 },
+    { titulo: "Objetivos", tempo: 0.1 },
     { titulo: "Fundamentação", tempo: 3 },
     { titulo: "Hardware", tempo: 5 },
     { titulo: "Software", tempo: 3 },
@@ -41,15 +41,17 @@ function App() {
     setIndiceAtual(0);
   }
 
-  function proximo() {
-    setIndiceAtual(prev =>
-      prev + 1 < contadores.length ? prev + 1 : -1
-    );
+  function proximo(indiceQueTerminou) {
+    const proximoIndice = indiceQueTerminou + 1;
 
-    if (indiceAtual == -1) {
+    if (proximoIndice < contadores.length) {
+      setIndiceAtual(proximoIndice);
+    } else {
+      setIndiceAtual(-1);
       liberarWakeLock();
     }
   }
+
 
   return (
     <>
@@ -64,15 +66,16 @@ function App() {
 
       </div>
       {/* <p>Tempo total: {tempoTotal}</p> */}
-      {contadores.map((c, index) => {
-        return <Contador
+      {contadores.map((c, index) => (
+        <Contador
           key={index}
           titulo={c.titulo}
           tempo={c.tempo}
           ativo={index === indiceAtual}
-          onFinish={proximo}
+          onFinish={() => proximo(index)}
         />
-      })}
+      ))}
+
 
     </>
   )
